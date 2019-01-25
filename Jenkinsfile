@@ -32,15 +32,15 @@ node('php'){
     }
 
     stage('Docker Build') {
-        sh 'sudo docker build -t fsnasser/laravel:$BUILD_NUMBER .'
+        sh 'docker build -t fsnasser/laravel:$BUILD_NUMBER .'
     }
 
     stage('Docker Ship') {
-        sh 'sudo docker push fsnasser/laravel:$BUILD_NUMBER'
+        sh 'docker push fsnasser/laravel:$BUILD_NUMBER'
     }
     
     stage('Clean Up') {
-        sh 'sudo docker rmi fsnasser/laravel:$BUILD_NUMBER'
+        sh 'docker rmi fsnasser/laravel:$BUILD_NUMBER'
         deleteDir()
     }
 }
